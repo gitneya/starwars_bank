@@ -41,11 +41,11 @@ public class TransactionBancaireImpl implements ITransactionBancaire {
 	 */
 	//Les cartes ont été validées précédemment !!
 	@Override
-	public boolean effectuerTransaction(Long numeroCarteDebit,
+	public WSRetourTransaction effectuerTransaction(Long numeroCarteDebit,
 			Date dateFinValiditeDebit, Integer cryptogrammeDebit,
 			Long numeroCarteCredit, Date dateFinValiditeCredit,
 			Integer cryptogrammeCredit, Double montant) {
-		boolean transactionValide = false;
+		WSRetourTransaction retour = new WSRetourTransaction(false,0,new Date());
 		//Vérifier le solde sur le compte à débiter
 		CarteBancaire carteDebit = daoCarte.rechercherCarte(numeroCarteDebit, cryptogrammeDebit, dateFinValiditeDebit);
 		CarteBancaire carteCredit = daoCarte.rechercherCarte(numeroCarteCredit, cryptogrammeCredit, dateFinValiditeCredit);
@@ -59,23 +59,24 @@ public class TransactionBancaireImpl implements ITransactionBancaire {
 				t.setMontant(montant);
 				t.setCompteAcrediter(compteCredit);
 				t.setCompteAdebiter(compteDebit);
+				t.setDateTransaction(new Date());
 				daoTransaction.ajouterTransaction(t);
 				//Mettre à jour les soldes des comptes
 				compteCredit.setSolde(compteCredit.getSolde() + montant);
 				compteDebit.setSolde(compteDebit.getSolde() - montant);
 				daoCompte.mettreAjourCompte(compteCredit);
 				daoCompte.mettreAjourCompte(compteDebit);
-				transactionValide = true;
-				log.info("TransactionBancaireImpl.effectuerTransaction : La transaction est Valide");
+				//Données en retour
+				retour.setTransactionValide(true);
+				retour.setIdTransaction(t.getId());
+				retour.setDateTransaction(t.getDateTransaction());
+				log.info("TransactionBancaireImpl.effectuerTransaction : La transaction " + t.getId() + " est Valide et enregistrée.");
 				log.info("************************************************************************");
 			} else {
-				transactionValide = false; //Pour etre sur !!!
 				log.info("TransactionBancaireImpl.effectuerTransaction : La transaction est invalide (solde insuffisant)");
 				log.info("**********************************************************************************************");
 			}
 		}
-
-		return transactionValide;
+		return retour;
 	}
-
 }

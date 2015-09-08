@@ -3,6 +3,8 @@
  */
 package fr.afcepf.al24.bank.entites;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Stagiaire
@@ -32,6 +36,9 @@ public class TransactionBancaire {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="COMPTE_ID_CREDIT",nullable=false)
 	private Compte compteAcrediter;
+	@Column(name="TRANSACTION_DATE",nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateTransaction;
 	/**
 	 * 
 	 */
@@ -49,6 +56,7 @@ public class TransactionBancaire {
 		this.compteAdebiter = compteAdebiter;
 		this.montant = montant;
 		this.compteAcrediter = compteAcrediter;
+		this.dateTransaction = new Date();
 	}
 
 	/**
@@ -98,5 +106,17 @@ public class TransactionBancaire {
 	 */
 	public void setCompteAcrediter(Compte compteAcrediter) {
 		this.compteAcrediter = compteAcrediter;
+	}
+	/**
+	 * @return the dateTransaction
+	 */
+	public Date getDateTransaction() {
+		return dateTransaction;
+	}
+	/**
+	 * @param dateTransaction the dateTransaction to set
+	 */
+	public void setDateTransaction(Date dateTransaction) {
+		this.dateTransaction = dateTransaction;
 	}
 }
