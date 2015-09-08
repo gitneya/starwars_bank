@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<import resource="dataSourceSpringConf.xml" />
+	<import resource="jpaSpringConf.xml" />
+
+	<context:annotation-config /> <!-- pour que Spring tienne compte de @Autowired , @Component ou @Inject 
+		, @Named il faut ajouter le xmlns:context et les schema location schema/context -->
+
+	<!-- Avec les annotations, permet de scanner les composants dans le classpath -->
+	<context:component-scan base-package="fr.afcepf.al24.bank.dao.impl" />
+	<context:component-scan base-package="fr.afcepf.al24.bank.service" />
+	<!-- Version Spring avec fichier XML par opposition à Annotation déclaration 
+		du bean Spring -->
+	<bean id="validerCarteBancaireImpl" class="fr.afcepf.al24.bank.service.ValiderCarteBancaireImpl">
+		<!-- Ici, injection de dépendance <property name="...." ref="...." /> éventuelle 
+			injection de dépendance -->
+	</bean>
+	<bean id="TransactionBancaireImpl" class="fr.afcepf.al24.bank.service.TransactionBancaireImpl">
+		<!-- Ici, injection de dépendance <property name="...." ref="...." /> éventuelle 
+			injection de dépendance -->
+	</bean>
+	<!-- Config CXF -->
+	<!-- on met #ValiderCarteBancaire pour faire référence au bean déclaré plus 
+		haut, si on ne déclare pas le bean (ex : annotation), on met le QName de 
+		la classe -->
+	<jaxws:endpoint id="validerCarteEndpoint" implementor="#validerCarteBancaireImpl"
+		address="/ValiderCarteBancaire" />
+
+	<jaxws:endpoint id="transactionBancaireEndpoint" implementor="#transactionBancaireImpl"
+		address="/TransactionBancaire" />
+	<!-- pour fin d'url en /services/ValiderCarteBancaire et /services/ValiderCarteBancaire?wsdl -->
+
+
+</beans>
