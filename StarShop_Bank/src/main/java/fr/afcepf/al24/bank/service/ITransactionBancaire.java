@@ -10,9 +10,6 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
-import fr.afcepf.al24.bank.entites.CarteBancaire;
-import fr.afcepf.al24.bank.entites.Compte;
-
 /**
  * @author Stagiaire
  *
