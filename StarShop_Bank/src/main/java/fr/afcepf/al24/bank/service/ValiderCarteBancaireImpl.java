@@ -24,7 +24,7 @@ import fr.afcepf.al24.bank.entites.CarteBancaire;
  */
 @Transactional
 @Component
-@WebService(targetNamespace="http://service.bank.al24.afcepf.fr/", 
+@WebService(targetNamespace="http://validation.bank.al24.afcepf.fr/", 
 endpointInterface="fr.afcepf.al24.bank.service.IValiderCarteBancaire")
 public class ValiderCarteBancaireImpl implements IValiderCarteBancaire {
 

@@ -25,7 +25,7 @@ import fr.afcepf.al24.bank.entites.TransactionBancaire;
  */
 @Transactional
 @Component
-@WebService(targetNamespace="http://service.bank.al24.afcepf.fr/", 
+@WebService(targetNamespace="http://transaction.bank.al24.afcepf.fr/", 
 endpointInterface="fr.afcepf.al24.bank.service.ITransactionBancaire")
 public class TransactionBancaireImpl implements ITransactionBancaire {
 
