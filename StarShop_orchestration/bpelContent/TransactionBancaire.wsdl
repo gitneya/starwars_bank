@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://transaction.bank.al24.afcepf.fr/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="TransactionBancaireImplService" targetNamespace="http://transaction.bank.al24.afcepf.fr/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://transaction.bank.al24.afcepf.fr/"
+			elementFormDefault="unqualified" targetNamespace="http://transaction.bank.al24.afcepf.fr/"
+			version="1.0">
+
+			<xs:element name="effectuerTransaction" type="tns:effectuerTransaction" />
+
+			<xs:element name="effectuerTransactionResponse" type="tns:effectuerTransactionResponse" />
+
+			<xs:complexType name="effectuerTransaction">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="numeroCarteDebit" type="xs:long" />
+					<xs:element minOccurs="0" name="dateFinValiditeDebit"
+						type="xs:dateTime" />
+					<xs:element minOccurs="0" name="cryptogrammeDebit" type="xs:int" />
+					<xs:element minOccurs="0" name="numeroCarteCredit" type="xs:long" />
+					<xs:element minOccurs="0" name="dateFinValiditeCredit"
+						type="xs:dateTime" />
+					<xs:element minOccurs="0" name="cryptogrammeCredit"
+						type="xs:int" />
+					<xs:element minOccurs="0" name="montant" type="xs:double" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="effectuerTransactionResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:wsRetourTransaction" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="wsRetourTransaction">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="dateTransaction" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="idTransaction" type="xs:int" />
+					<xs:element name="transactionValide" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="effectuerTransaction">
+		<wsdl:part element="tns:effectuerTransaction" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="effectuerTransactionResponse">
+		<wsdl:part element="tns:effectuerTransactionResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ITransactionBancaire">
+		<wsdl:operation name="effectuerTransaction">
+			<wsdl:input message="tns:effectuerTransaction" name="effectuerTransaction">
+			</wsdl:input>
+			<wsdl:output message="tns:effectuerTransactionResponse"
+				name="effectuerTransactionResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="TransactionBancaireImplServiceSoapBinding"
+		type="tns:ITransactionBancaire">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="effectuerTransaction">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="effectuerTransaction">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="effectuerTransactionResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="TransactionBancaireImplService">
+		<wsdl:port binding="tns:TransactionBancaireImplServiceSoapBinding"
+			name="TransactionBancaireImplPort">
+			<soap:address
+				location="http://localhost:8080/StarShop_Bank/services/TransactionBancaire" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:bpel.bank.al24.afcepf.fr="http://bpel.bank.al24.afcepf.fr" xmlns:transaction.bank.al24.afcepf.fr="http://transaction.bank.al24.afcepf.fr/" xmlns:validation.bank.al24.afcepf.fr="http://validation.bank.al24.afcepf.fr/">
+  <process name="bpel.bank.al24.afcepf.fr:BPELBank">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="bpel.bank.al24.afcepf.fr:BPELBankService" port="BPELBankPort"/>
+    </provide>
+    <invoke partnerLink="ValiderCartePL">
+      <service name="validation.bank.al24.afcepf.fr:ValiderCarteBancaireImplService" port="ValiderCarteBancaireImplPort"/>
+    </invoke>
+    <invoke partnerLink="TransactionPL">
+      <service name="transaction.bank.al24.afcepf.fr:TransactionBancaireImplService" port="TransactionBancaireImplPort"/>
+    </invoke>
+  </process>
+</deploy>
