@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition>
+		<div id="header"
+			style="width: 100%; font-size: 36px; line-height: 48px; backgroud-color: navy; color: white">My
+			Facelet Application</div>
+		<h1>Bienvenue dans votre Banque en Ligne</h1>
+		<h:button id="Monbouton" title="TITRE" value="VALEUR"></h:button>
+		<p:commandButton value="cliquer"></p:commandButton>
+		<p:breadCrumb>
+			<p:menuitem value="Accueil" url="#" />
+			<p:menuitem value="Consulter mon compte" url="#" />
+		</p:breadCrumb>
+	</ui:composition>
+</h:body>
+</html>

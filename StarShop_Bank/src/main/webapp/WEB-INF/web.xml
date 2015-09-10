@@ -25,5 +25,16 @@
 		<url-pattern>/services/*</url-pattern> <!-- ou autre que services -->
 		<!-- URL WS en "http://localhost:8080/myWebApp/services/serviceName" -->
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FacesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FacesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
 
 </web-app>
