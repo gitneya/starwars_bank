@@ -13,6 +13,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> <!-- initialisation de spring lors dès le démarrage webApp -->
 	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
 	
 	<servlet>
 		<servlet-name>CXFServlet</servlet-name>

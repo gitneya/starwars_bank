@@ -15,4 +15,5 @@ public interface IDaoClient {
 	public Client ajouterClient(Long numeroIdentite, String nom, String prenom, Date dateNaissance, String motDePasse);
 	public boolean SupprimerClient(Client client);
 	public Client rechercherClientparId(Integer id);
+	public Client rechercherClientparNomMotDePasse(String nom, String motDePasse);
 }

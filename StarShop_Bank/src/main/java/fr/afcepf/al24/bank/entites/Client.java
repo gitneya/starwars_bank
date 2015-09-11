@@ -6,6 +6,7 @@ package fr.afcepf.al24.bank.entites;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import javax.persistence.TemporalType;
  * @author Stagiaire
  *
  */
-@Entity
+@Entity(name="client")
 @Table(name="client")
 public class Client {
 
@@ -43,7 +44,7 @@ public class Client {
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="client")
-	Set<Compte> listeCompte = new HashSet<Compte>(0);
+	Set<Compte> listeCompte = new LinkedHashSet<Compte>(0);
 
 	/**
 	 * 

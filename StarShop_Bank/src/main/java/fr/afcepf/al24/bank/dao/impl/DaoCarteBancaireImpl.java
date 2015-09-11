@@ -38,7 +38,7 @@ public class DaoCarteBancaireImpl implements IDaoCarteBancaire {
 			Integer cryptogramme, Date dateValidite) {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		log.info("CarteBancaire.rechercherCarte : numero=" + numero + " crypto=" + cryptogramme + " DateFin=" + sdf.format(dateValidite) );
+		log.info("DaoCarteBancaireImpl.rechercherCarte : numero=" + numero + " crypto=" + cryptogramme + " DateFin=" + sdf.format(dateValidite) );
 		log.info("**********************************************************************************");
 		String requete = "FROM carteBancaire c WHERE c.numero=:paramNumero"
 				+ " AND c.dateFinValidite=:paramDateFin"
@@ -51,12 +51,12 @@ public class DaoCarteBancaireImpl implements IDaoCarteBancaire {
 		try {
 			carte = (CarteBancaire) hql.getSingleResult();
 		} catch (Exception e) {
-			log.info("CarteBancaire.rechercherCarte : carte introuvable");
+			log.info("DaoCarteBancaireImpl.rechercherCarte : carte introuvable");
 			log.info("*************************************************");
 			carte = null;
 		}
 		if (carte != null) {
-			log.info("CarteBancaire.rechercherCarte : carte trouvée, numero=" + carte.getNumero() 
+			log.info("DaoCarteBancaireImpl.rechercherCarte : carte trouvée, numero=" + carte.getNumero() 
 					+ " DateFin=" + carte.getDateFinValidite()
 					+ " Crypto=" + carte.getCryptogramme());
 			log.info("******************************************************************************************************");

@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  * @author Stagiaire
  *
  */
-@Entity
+@Entity(name="transactionbancaire")
 @Table(name="transaction")
 public class TransactionBancaire {
 	@Id
