@@ -4,7 +4,6 @@
 package fr.afcepf.al24.bank.entites;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -38,6 +37,8 @@ public class Client {
 	private String nom;
 	@Column(name="CLIENT_PRENOM",nullable = false, length = 50)
 	private String prenom;
+	@Column(name="CLIENT_MOTDEPASSE",nullable = false, length = 50)
+	private String motDePasse;
 	@Column(name="CLIENT_DATENAISSANCE",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
@@ -49,21 +50,6 @@ public class Client {
 	 */
 	public Client() {
 	}
-
-	/**
-	 * @param numeroIdentite
-	 * @param nom
-	 * @param prenom
-	 * @param dateNaissance
-	 * @param listeCompte
-	 */
-	public Client(Long numeroIdentite, String nom, String prenom,
-			Date dateNaissance) {
-		this.numeroIdentite = numeroIdentite;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaissance = dateNaissance;
-	}
 	/**
 	 * @param numeroIdentite
 	 * @param nom
@@ -73,12 +59,12 @@ public class Client {
 	 * @throws ParseException 
 	 */
 	public Client(Long numeroIdentite, String nom, String prenom,
-			String dateNaissance) throws ParseException {
+			Date dateNaissance, String paramMotDePasse) {
 		this.numeroIdentite = numeroIdentite;
 		this.nom = nom;
 		this.prenom = prenom;
-	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    this.dateNaissance = sdf.parse(dateNaissance);
+	    this.dateNaissance = dateNaissance;
+	    motDePasse = paramMotDePasse;
 	}
 	/**
 	 * @return the id
@@ -130,6 +116,19 @@ public class Client {
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+	/**
+	 * @return the motDePasse
+	 */
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	/**
+	 * @param motDePasse the motDePasse to set
+	 */
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
 	/**
 	 * @return the dateNaissance

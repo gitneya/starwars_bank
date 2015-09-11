@@ -3,7 +3,6 @@
  */
 package fr.afcepf.al24.bank.dao.api;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 import fr.afcepf.al24.bank.entites.Client;
@@ -13,7 +12,7 @@ import fr.afcepf.al24.bank.entites.Client;
  *
  */
 public interface IDaoClient {
-	public Client ajouterClient(Long numeroIdentite, String nom, String prenom, Date dateNaissance);
+	public Client ajouterClient(Long numeroIdentite, String nom, String prenom, Date dateNaissance, String motDePasse);
 	public boolean SupprimerClient(Client client);
-	public Client rechercherClientparNumIdentite(BigInteger numeroIdentite);
+	public Client rechercherClientparId(Integer id);
 }

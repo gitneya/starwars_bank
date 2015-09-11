@@ -48,11 +48,9 @@ public class Compte {
 	 * @param solde
 	 * @param listeCarteBancaire
 	 */
-	public Compte(Client client, Double solde,
-			Set<CarteBancaire> listeCarteBancaire) {
+	public Compte(Client client, Double solde) {
 		this.client = client;
 		this.solde = solde;
-		this.listeCarteBancaire = listeCarteBancaire;
 	}
 
 	/**

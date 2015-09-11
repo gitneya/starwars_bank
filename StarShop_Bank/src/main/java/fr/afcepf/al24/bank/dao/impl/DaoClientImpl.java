@@ -3,7 +3,6 @@
  */
 package fr.afcepf.al24.bank.dao.impl;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -30,8 +29,11 @@ public class DaoClientImpl implements IDaoClient {
 	 * @see fr.afcepf.al24.bank.dao.api.IDaoClient#ajouterClient(java.lang.String, java.lang.String, java.util.Date)
 	 */
 	@Override
-	public Client ajouterClient(Long numeroIdentification, String nom, String prenom, Date dateNaissance) {
-		// TODO Auto-generated method stub
+	public Client ajouterClient(Long numeroIdentification, String nom, String prenom, Date dateNaissance, String motDePasse) {
+		Client client = new Client(numeroIdentification, nom, prenom, dateNaissance, motDePasse);
+		if (client != null) {
+			entityManager.persist(client);
+		}
 		return null;
 	}
 
@@ -40,7 +42,7 @@ public class DaoClientImpl implements IDaoClient {
 	 */
 	@Override
 	public boolean SupprimerClient(Client client) {
-		// TODO Auto-generated method stub
+		entityManager.remove(client);
 		return false;
 	}
 
@@ -48,8 +50,8 @@ public class DaoClientImpl implements IDaoClient {
 	 * @see fr.afcepf.al24.bank.dao.api.IDaoClient#rechercherClientparNumIdentite(java.math.BigInteger)
 	 */
 	@Override
-	public Client rechercherClientparNumIdentite(BigInteger numeroIdentite) {
-		// TODO Auto-generated method stub
+	public Client rechercherClientparId(Integer id) {
+		entityManager.find(Client.class, id);
 		return null;
 	}
 
