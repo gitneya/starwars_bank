@@ -130,8 +130,7 @@ public class LoginBean implements Serializable {
 		}
 		return pageRetournee;
 	}
-
-	/*
+	
 	public void buttonAction(ActionEvent actionEvent) {
 
 		afficheMessage("Connexion en cours");
@@ -140,8 +139,7 @@ public class LoginBean implements Serializable {
 		log.info("LoginBean.buttonAction : " + actionEvent.getSource());
 		connexion();
 	}
-	*/
-	/*
+
 	public void buttonActionDeconnexion(ActionEvent actionEvent) {
 
 		afficheMessage("Déconnexion en cours");
@@ -150,4 +148,6 @@ public class LoginBean implements Serializable {
 		log.info("LoginBean.buttonActionDeconnexion : " + actionEvent.getSource());
 		deconnexion();
 	}
-	*/}
+
+}
+

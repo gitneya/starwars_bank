@@ -16,15 +16,12 @@
 						<h1>Bienvenue dans votre Banque en Ligne</h1>
 						<p:outputLabel value="Bonjour #{loginBean.nom}"
 							rendered="#{loginBean.estConnecte}" />
-							<!-- 
-						<p:commandButton id="buttonDeconnexion" value="Déconnexion"
+						<p:commandButton id="buttonDeconnexionHeader" value="Déconnexion"
 							icon="ui-icon-check"
 							actionListener="#{loginBean.buttonActionDeconnexion}"
 							action="/index" ajax="true" rendered="#{loginBean.estConnecte}" />
-						<p:commandButton id="buttonConnexion" value="Connexion"
-							icon="ui-icon-check" actionListener="#{loginBean.buttonAction}"
-							action="/login" ajax="true" rendered="#{!loginBean.estConnecte}" />
-							 -->
+						<p:commandButton id="buttonConnexionHeader" value="Connexion"
+							icon="ui-icon-check" action="/login" ajax="true" rendered="#{!loginBean.estConnecte}" />
 					</h:panelGrid>
 					<p:breadCrumb>
 						<p:menuitem value="Accueil" url="index.xhtml" />

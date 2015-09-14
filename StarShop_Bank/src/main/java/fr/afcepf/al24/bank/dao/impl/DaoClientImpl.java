@@ -3,7 +3,6 @@
  */
 package fr.afcepf.al24.bank.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -85,8 +84,10 @@ public class DaoClientImpl implements IDaoClient {
 				int size = listeClients.size();
 				if (size == 1) {
 					client = listeClients.get(0);
+				} else if (size > 1) {
+						log.info("DaoClientImpl.rechercherClientparNomMotDePasse : La requete a retourné plusieurs resultats");	
 				} else {
-						log.info("DaoClientImpl.rechercherClientparNomMotDePasse : La requete e retournée plusieurs resultats");	
+					log.info("DaoClientImpl.rechercherClientparNomMotDePasse : La requete n'a retourné auncun resultats");
 				}
 				
 				entityManager.close();
