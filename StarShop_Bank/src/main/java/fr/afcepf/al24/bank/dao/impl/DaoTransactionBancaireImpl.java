@@ -35,9 +35,16 @@ public class DaoTransactionBancaireImpl implements IDaoTransactionBancaire {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/**
+	 * 
+	 */
+	public DaoTransactionBancaireImpl() {
+	}
+
 	@Override
 	public TransactionBancaire ajouterTransaction(TransactionBancaire t) {
 		entityManager.persist(t);
+		entityManager.flush();
 		return null;
 	}
 
@@ -48,11 +55,12 @@ public class DaoTransactionBancaireImpl implements IDaoTransactionBancaire {
 		List<TransactionBancaire> liste = null;
 		if (client != null) {
 			List<Compte> listeCompte = new ArrayList<Compte>();
-			listeCompte = client.getListeCompte()
-			String requete = "FROM transactionbancaire c WHERE c.compteAcrediter=:paramId1 OR c.compteAdebiter=:paramId2 ORDER BY c.dateTransaction";
+			//listeCompte = client.getListeCompte()
+			//String requete = "FROM TransactionBancaire c WHERE c.compteAcrediter=:paramId1 OR c.compteAdebiter=:paramId2 ORDER BY c.dateTransaction";
+			String requete = "FROM TransactionBancaire";
 			Query hql = entityManager.createQuery(requete);
-			hql.setParameter("paramId1", client.get);
-			hql.setParameter("paramId2", client.getId().intValue());
+			//hql.setParameter("paramId1", client.getListeCompte());
+			//hql.setParameter("paramId2", client.getId().intValue());
 			
 			try {
 				liste = new ArrayList<TransactionBancaire>();

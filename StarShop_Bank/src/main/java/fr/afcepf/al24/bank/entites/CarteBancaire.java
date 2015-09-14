@@ -3,6 +3,7 @@
  */
 package fr.afcepf.al24.bank.entites;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -21,23 +22,34 @@ import javax.persistence.TemporalType;
  * @author Stagiaire
  *
  */
-@Entity(name="carteBancaire")
+@Entity//(name="carteBancaire")
 @Table(name="carteBancaire")
-public class CarteBancaire {
+public class CarteBancaire implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "CARTE_ID", unique = true, nullable = false)
 	private Integer id;
+	
 	@Column(name = "CARTE_NUMERO", unique = true, nullable = false)
 	private Long numero;
+	
 	@Column(name = "CARTE_CRYPTO", unique = false, nullable = false)
 	private Integer cryptogramme;
+	
 	@Column(name = "CARTE_DATE_EMMISSION", unique = false, nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dateEmmission;
+	
 	@Column(name = "CARTE_DATEFIN", unique = false, nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dateFinValidite;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="COMPTE_ID",nullable=false)
 	private Compte compte;

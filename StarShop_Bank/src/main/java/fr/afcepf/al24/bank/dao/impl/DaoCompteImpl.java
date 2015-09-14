@@ -55,6 +55,7 @@ public class DaoCompteImpl implements IDaoCompte {
 	@Override
 	public Compte mettreAjourCompte(Compte c) {
 		entityManager.merge(c);
+		entityManager.flush();
 		return null;
 	}
 

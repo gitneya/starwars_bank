@@ -3,14 +3,17 @@
  */
 package fr.afcepf.al24.bank.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al24.bank.dao.api.IDaoClient;
@@ -20,7 +23,8 @@ import fr.afcepf.al24.bank.entites.Client;
  * @author Stagiaire
  *
  */
-@Repository(value="daoClient")
+//@Repository(value="daoClient")
+@Component(value="daoClient")
 @Transactional
 public class DaoClientImpl implements IDaoClient {
 
@@ -66,17 +70,33 @@ public class DaoClientImpl implements IDaoClient {
 		log.info("DaoClientImpl.rechercherClientparNomMotDePasse");
 		log.info("**********************************************");
 		if (!nom.equals("") && !motDePasse.equals("")) {
-			String requete = "FROM client c WHERE c.nom=:paramNom"
+			/*
+			String requeteHQL = "FROM client c WHERE c.nom=:paramNom"
 					+ " AND c.motDePasse=:paramMotDePasse";
-			Query hql = entityManager.createQuery(requete);
-			hql.setParameter("paramNom", nom);
-			hql.setParameter("paramMotDePasse", motDePasse);
+			*/
 			
+			String requeteJPQL = "SELECT c FROM Client c WHERE c.nom=:paramNom AND c.motDePasse=:paramMotDePasse";
+			Query jpql = entityManager.createQuery(requeteJPQL, Client.class);
+			jpql.setParameter("paramNom", nom);
+			jpql.setParameter("paramMotDePasse", motDePasse);
 			try {
-				client = (Client) hql.getSingleResult();
-			} catch (Exception e) {
-				log.info("DaoClientImpl.rechercherClientparNomMotDePasse : client introuvable");
+				//client = (Client) hql.getSingleResult();
+				List<Client>  listeClients = (List<Client>) jpql.getResultList();
+				int size = listeClients.size();
+				if (size == 1) {
+					client = listeClients.get(0);
+				} else {
+						log.info("DaoClientImpl.rechercherClientparNomMotDePasse : La requete e retournée plusieurs resultats");	
+				}
+				
+				entityManager.close();
+				
+			} catch (NoResultException e1) { 
+				log.info("DaoClientImpl.rechercherClientparNomMotDePasse : client introuvable : " + e1.getClass() + " " + e1.getMessage());
 				log.info("*******************************************************************");
+				client = null;
+			} catch (Exception e) {
+				e.printStackTrace();
 				client = null;
 			}
 		}

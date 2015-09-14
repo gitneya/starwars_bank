@@ -3,8 +3,8 @@
  */
 package fr.afcepf.al24.bank.entites;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,23 +21,33 @@ import javax.persistence.Table;
  * @author Stagiaire
  *
  */
-@Entity
+@Entity//(name="compte")
 @Table(name="compte")
-public class Compte {
+public class Compte implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "COMPTE_ID", unique = true, nullable = false)
 	private Integer id;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="CLIENT_ID",nullable=false)
 	private Client client;
+	
 	@Column(name = "COMPTE_SOLDE", unique = false, nullable = false)
 	private Double solde;
-	@OneToMany
-	Set<CarteBancaire> listeCarteBancaire = new HashSet<CarteBancaire>(0);
+	
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="compte")
+	Collection<CarteBancaire> listeCarteBancaire;
+	
 	//FIXME: Set ou List ??
-	@OneToMany
-	Set<TransactionBancaire> listeTransaction = new HashSet<TransactionBancaire>(0);
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="compteAdebiter")
+	Collection<TransactionBancaire> listeTransaction;
 	/**
 	 * 
 	 */
@@ -92,25 +102,25 @@ public class Compte {
 	/**
 	 * @return the listeCarteBancaire
 	 */
-	public Set<CarteBancaire> getListeCarteBancaire() {
+	public Collection<CarteBancaire> getListeCarteBancaire() {
 		return listeCarteBancaire;
 	}
 	/**
 	 * @param listeCarteBancaire the listeCarteBancaire to set
 	 */
-	public void setListeCarteBancaire(Set<CarteBancaire> listeCarteBancaire) {
+	public void setListeCarteBancaire(Collection<CarteBancaire> listeCarteBancaire) {
 		this.listeCarteBancaire = listeCarteBancaire;
 	}
 	/**
 	 * @return the listeTransaction
 	 */
-	public Set<TransactionBancaire> getListeTransaction() {
+	public Collection<TransactionBancaire> getListeTransaction() {
 		return listeTransaction;
 	}
 	/**
 	 * @param listeTransaction the listeTransaction to set
 	 */
-	public void setListeTransaction(Set<TransactionBancaire> listeTransaction) {
+	public void setListeTransaction(Collection<TransactionBancaire> listeTransaction) {
 		this.listeTransaction = listeTransaction;
 	}
 	

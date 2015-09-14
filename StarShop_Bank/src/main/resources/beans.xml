@@ -6,11 +6,15 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- DataSource -->
 	<import resource="dataSourceSpringConf.xml" />
+	
+	<!-- Configuration de JPA Spring -->
 	<import resource="jpaSpringConf.xml" />
 
 	<context:annotation-config /> <!-- pour que Spring tienne compte de @Autowired , @Component ou @Inject 
@@ -20,6 +24,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<context:component-scan base-package="fr.afcepf.al24.bank.dao.impl" />
 	<context:component-scan base-package="fr.afcepf.al24.bank.service" />
 	<context:component-scan base-package="fr.afcepf.al24.bank.mbean" />
+	
 	<!-- Version Spring avec fichier XML par opposition à Annotation déclaration 
 		du bean Spring -->
 	<bean id="validerCarteBancaireImpl" class="fr.afcepf.al24.bank.service.ValiderCarteBancaireImpl">

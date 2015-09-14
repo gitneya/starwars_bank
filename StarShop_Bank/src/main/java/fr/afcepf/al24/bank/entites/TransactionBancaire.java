@@ -3,6 +3,7 @@
  */
 package fr.afcepf.al24.bank.entites;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -21,28 +22,40 @@ import javax.persistence.TemporalType;
  * @author Stagiaire
  *
  */
-@Entity(name="transactionbancaire")
-@Table(name="transaction")
-public class TransactionBancaire {
+@Entity//(name="transactionBancaire")
+@Table(name="transactionBancaire")
+public class TransactionBancaire implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "TRANSACTION_ID", unique = true, nullable = false)
 	private Integer id;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="COMPTE_ID_DEBIT",nullable=false)
-	private Compte compteAdebiter;
+	
 	@Column(name = "TRANSACTION_MONTANT", unique = false, nullable = false)
 	private Double montant;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="COMPTE_ID_CREDIT",nullable=false)
-	private Compte compteAcrediter;
+
 	@Column(name="TRANSACTION_DATE",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTransaction;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="COMPTE_ID_DEBIT",nullable=false)
+	private Compte compteAdebiter;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="COMPTE_ID_CREDIT",nullable=false)
+	private Compte compteAcrediter;
+	
 	/**
 	 * 
 	 */
 	public TransactionBancaire() {
+		this.dateTransaction = new Date();
 	}
 
 	/**

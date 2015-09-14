@@ -3,21 +3,16 @@
  */
 package fr.afcepf.al24.test.dao;
 
-import java.math.BigInteger;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fr.afcepf.al24.bank.dao.api.IDaoClient;
 import fr.afcepf.al24.bank.dao.impl.DaoClientImpl;
-import fr.afcepf.al24.bank.entites.Client;
 
 /**
  * @author Stagiaire

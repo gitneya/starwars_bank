@@ -3,11 +3,9 @@
  */
 package fr.afcepf.al24.bank.entites;
 
-import java.text.ParseException;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,27 +22,38 @@ import javax.persistence.TemporalType;
  * @author Stagiaire
  *
  */
-@Entity(name="client")
+@Entity//(name="client")
 @Table(name="client")
-public class Client {
+public class Client implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "CLIENT_ID", unique = true, nullable = false)
 	private Integer id;
+	
 	@Column(name="CLIENT_NUMERO_IDENTITE", unique = true, nullable = false)
 	private Long numeroIdentite ;
+	
 	@Column(name="CLIENT_NOM",nullable = false, length = 50)
 	private String nom;
+	
 	@Column(name="CLIENT_PRENOM",nullable = false, length = 50)
 	private String prenom;
+	
 	@Column(name="CLIENT_MOTDEPASSE",nullable = false, length = 50)
 	private String motDePasse;
+	
 	@Column(name="CLIENT_DATENAISSANCE",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
+	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="client")
-	Set<Compte> listeCompte = new LinkedHashSet<Compte>(0);
+	Collection<Compte> listeCompte;
 
 	/**
 	 * 
@@ -56,8 +65,6 @@ public class Client {
 	 * @param nom
 	 * @param prenom
 	 * @param dateNaissance
-	 * @param listeCompte
-	 * @throws ParseException 
 	 */
 	public Client(Long numeroIdentite, String nom, String prenom,
 			Date dateNaissance, String paramMotDePasse) {
@@ -146,14 +153,13 @@ public class Client {
 	/**
 	 * @return the listeCompte
 	 */
-	public Set<Compte> getListeCompte() {
+	public Collection<Compte> getListeCompte() {
 		return listeCompte;
 	}
 	/**
 	 * @param listeCompte the listeCompte to set
 	 */
-	public void setListeCompte(Set<Compte> listeCompte) {
+	public void setListeCompte(Collection<Compte> listeCompte) {
 		this.listeCompte = listeCompte;
 	}
-
 }

@@ -7,19 +7,35 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-	<ui:composition>
-		<f:view>
+	<f:view>
+		<ui:composition>
+
 			<h:form>
 				<div id="header">
-					<h1>Bienvenue dans votre Banque en Ligne</h1>
+					<h:panelGrid columns="2" cellpadding="5" id="headerGrid">
+						<h1>Bienvenue dans votre Banque en Ligne</h1>
+						<p:outputLabel value="Bonjour #{loginBean.nom}"
+							rendered="#{loginBean.estConnecte}" />
+							<!-- 
+						<p:commandButton id="buttonDeconnexion" value="Déconnexion"
+							icon="ui-icon-check"
+							actionListener="#{loginBean.buttonActionDeconnexion}"
+							action="/index" ajax="true" rendered="#{loginBean.estConnecte}" />
+						<p:commandButton id="buttonConnexion" value="Connexion"
+							icon="ui-icon-check" actionListener="#{loginBean.buttonAction}"
+							action="/login" ajax="true" rendered="#{!loginBean.estConnecte}" />
+							 -->
+					</h:panelGrid>
 					<p:breadCrumb>
 						<p:menuitem value="Accueil" url="index.xhtml" />
 						<p:menuitem value="Consulter mon compte" action="/login" />
 						<p:menuitem value="Créer un compte" action="/creerCompte" />
 					</p:breadCrumb>
 				</div>
+
 			</h:form>
-		</f:view>
-	</ui:composition>
+
+		</ui:composition>
+	</f:view>
 </h:body>
 </html>

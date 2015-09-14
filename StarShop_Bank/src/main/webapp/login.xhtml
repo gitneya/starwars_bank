@@ -8,10 +8,6 @@
 
 <h:body>
 	<f:view>
-
-		<!-- 
-		<ui:composition>
-		-->
 		<ui:composition template="/templates/BasicTemplate.xhtml">
 			<ui:define name="content">
 				<h:form>
@@ -22,20 +18,22 @@
 						<p:inputText id="iDnom" value="#{loginBean.nom}" label="Nom :"
 							required="true"></p:inputText>
 						<p:outputLabel for="iDmotdepasse" value="Mot de passe :"></p:outputLabel>
-						<p:password id="iDmotdepasse" value="#{loginBean.motDePasse}"
-							feedback="true" required="true" />
+						<p:password id="iDmotdepasse" value="#{loginBean.motDePasse}" feedback="true" required="true" />
 						<p:growl id="growl" life="2000" />
+						<!-- 
 						<p:commandButton id="buttonConnexion" value="Connexion"
 							icon="ui-icon-check" actionListener="#{loginBean.buttonAction}" action="/consulterCompte"
 							update="connexionGrid" ajax="true" />
+							 -->
+							 <!-- 
+							<p:commandButton id="buttonConnexion" value="Connexion"
+							icon="ui-icon-check" action="#{loginBean.}"
+							update="connexionGrid" ajax="false" />
+							 -->
 					</h:panelGrid>
 				</h:form>
 			</ui:define>
 		</ui:composition>
-		<!--
-		</ui:composition>
-		 -->
-
 	</f:view>
 </h:body>
 </html>

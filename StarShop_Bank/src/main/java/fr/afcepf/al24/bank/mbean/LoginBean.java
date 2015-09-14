@@ -84,7 +84,6 @@ public class LoginBean implements Serializable {
 	public void setDaoClient(IDaoClient daoClient) {
 		this.daoClient = daoClient;
 	}
-
 	
 	/**
 	 * @return the client
@@ -92,12 +91,21 @@ public class LoginBean implements Serializable {
 	public Client getClient() {
 		return client;
 	}
+	
+	/**
+	 * @return the estConnecte
+	 */
+	public boolean isEstConnecte() {
+		return client != null;
+	}
+	
 	public void afficheMessage(String summary) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 
 	public String deconnexion() {
+		log.info("LoginBean.Déconnexion : " + nom);
 		client = null;
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index.xhtml?faces-redirect=true";
@@ -113,22 +121,33 @@ public class LoginBean implements Serializable {
 			if (client == null) {
 				log.info("LoginBean.connexion : client introuvable");
 				log.info("****************************************");
+				afficheMessage("Cet utilisateur n'existe pas !");
 			} else {
 				pageRetournee = "consulterCompte.xhtml";
 				log.info("LoginBean.connexion : client trouvé : " + pageRetournee);
 				log.info("********************************************************");
-				
 			}
 		}
 		return pageRetournee;
 	}
 
-	public String buttonAction(ActionEvent actionEvent) {
+	/*
+	public void buttonAction(ActionEvent actionEvent) {
 
 		afficheMessage("Connexion en cours");
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 
 		log.info("LoginBean.buttonAction : " + actionEvent.getSource());
-		return connexion();
+		connexion();
 	}
-}
+	*/
+	/*
+	public void buttonActionDeconnexion(ActionEvent actionEvent) {
+
+		afficheMessage("Déconnexion en cours");
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+
+		log.info("LoginBean.buttonActionDeconnexion : " + actionEvent.getSource());
+		deconnexion();
+	}
+	*/}
