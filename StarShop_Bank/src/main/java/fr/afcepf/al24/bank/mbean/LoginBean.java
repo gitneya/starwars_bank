@@ -131,13 +131,12 @@ public class LoginBean implements Serializable {
 		return pageRetournee;
 	}
 	
-	public void buttonAction(ActionEvent actionEvent) {
+	public void buttonActionListenerConnexion(ActionEvent actionEvent) {
 
 		afficheMessage("Connexion en cours");
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 
 		log.info("LoginBean.buttonAction : " + actionEvent.getSource());
-		connexion();
 	}
 
 	public void buttonActionDeconnexion(ActionEvent actionEvent) {
