@@ -55,12 +55,13 @@ public class DaoTransactionBancaireImpl implements IDaoTransactionBancaire {
 		List<TransactionBancaire> liste = null;
 		if (client != null) {
 			List<Compte> listeCompte = new ArrayList<Compte>();
-			//listeCompte = client.getListeCompte()
-			//String requete = "FROM TransactionBancaire c WHERE c.compteAcrediter=:paramId1 OR c.compteAdebiter=:paramId2 ORDER BY c.dateTransaction";
-			String requete = "FROM TransactionBancaire";
+			listeCompte = client.getListeCompte()
+			String requete = "FROM TransactionBancaire c WHERE c.compteAcrediter=:paramId1 OR c.compteAdebiter=:paramId1 ORDER BY c.dateTransaction";
+			
+			//String requete = "FROM TransactionBancaire";
 			Query hql = entityManager.createQuery(requete);
-			//hql.setParameter("paramId1", client.getListeCompte());
-			//hql.setParameter("paramId2", client.getId().intValue());
+			
+			hql.setParameter("paramId1", client.g);
 			
 			try {
 				liste = new ArrayList<TransactionBancaire>();

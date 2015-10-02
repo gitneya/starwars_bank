@@ -11,7 +11,7 @@
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>trontastic</param-value>
-		<!--  <param-value>#{loginBean.preferences.theme}</param-value> -->
+		<!-- <param-value>#{loginBean.preferences.theme}</param-value> -->
 	</context-param>
 
 	<context-param>
@@ -20,9 +20,21 @@
 		<!-- ou .... , chemin menant à la configuration spring -->
 	</context-param>
 
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+		<!-- 
+    Development
+    Production
+    SystemTest
+    UnitTest
+		 -->
+	</context-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> <!-- initialisation de spring lors dès le démarrage webApp -->
 	</listener>
+	
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>

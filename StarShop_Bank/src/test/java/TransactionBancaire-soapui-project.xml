@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a3838d46-0a4e-4ac0-8938-7354d0fc5dfc" activeEnvironment="Default" name="TransactionBancaire" resourceRoot="" soapui-version="5.1.3" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2f1fd17c-bf72-4974-9ba2-5b65704e9262" wsaVersion="NONE" name="TransactionBancaireImplServiceSoapBinding" type="wsdl" bindingName="{http://transaction.bank.al24.afcepf.fr/}TransactionBancaireImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/StarShop_Bank/services/TransactionBancaire?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/StarShop_Bank/services/TransactionBancaire?wsdl"><con:part><con:url>http://localhost:8080/StarShop_Bank/services/TransactionBancaire?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TransactionBancaireImplService" targetNamespace="http://transaction.bank.al24.afcepf.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://transaction.bank.al24.afcepf.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://transaction.bank.al24.afcepf.fr/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="effectuerTransaction" type="tns:effectuerTransaction"/>
+      <xs:element name="effectuerTransactionResponse" type="tns:effectuerTransactionResponse"/>
+      <xs:complexType name="effectuerTransaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="numeroCarteDebit" type="xs:long"/>
+          <xs:element minOccurs="0" name="dateFinValiditeDebit" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="cryptogrammeDebit" type="xs:int"/>
+          <xs:element minOccurs="0" name="numeroCarteCredit" type="xs:long"/>
+          <xs:element minOccurs="0" name="dateFinValiditeCredit" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="cryptogrammeCredit" type="xs:int"/>
+          <xs:element minOccurs="0" name="montant" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="effectuerTransactionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wsRetourTransaction"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wsRetourTransaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dateTransaction" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="idTransaction" type="xs:int"/>
+          <xs:element name="transactionValide" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="effectuerTransaction">
+    <wsdl:part element="tns:effectuerTransaction" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="effectuerTransactionResponse">
+    <wsdl:part element="tns:effectuerTransactionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ITransactionBancaire">
+    <wsdl:operation name="effectuerTransaction">
+      <wsdl:input message="tns:effectuerTransaction" name="effectuerTransaction"></wsdl:input>
+      <wsdl:output message="tns:effectuerTransactionResponse" name="effectuerTransactionResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransactionBancaireImplServiceSoapBinding" type="tns:ITransactionBancaire">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="effectuerTransaction">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="effectuerTransaction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="effectuerTransactionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransactionBancaireImplService">
+    <wsdl:port binding="tns:TransactionBancaireImplServiceSoapBinding" name="TransactionBancaireImplPort">
+      <soap:address location="http://localhost:8080/StarShop_Bank/services/TransactionBancaire"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/StarShop_Bank/services/TransactionBancaire</con:endpoint></con:endpoints><con:operation id="8d729e31-5e7a-4a7b-9fb4-4d745336bb45" isOneWay="false" action="" name="effectuerTransaction" bindingOperationName="effectuerTransaction" type="Request-Response" outputName="effectuerTransactionResponse" inputName="effectuerTransaction" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a49d4a57-bfe9-486c-b980-1f9368963af7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/StarShop_Bank/services/TransactionBancaire</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tran="http://transaction.bank.al24.afcepf.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tran:effectuerTransaction>
+         <!--Optional:-->
+         <numeroCarteDebit>1</numeroCarteDebit>
+         <!--Optional:-->
+         <dateFinValiditeDebit>2017-01-01</dateFinValiditeDebit>
+         <!--Optional:-->
+         <cryptogrammeDebit>111</cryptogrammeDebit>
+         <!--Optional:-->
+         <numeroCarteCredit>1234567891234567</numeroCarteCredit>
+         <!--Optional:-->
+         <dateFinValiditeCredit>2017-01-01</dateFinValiditeCredit>
+         <!--Optional:-->
+         <cryptogrammeCredit>666</cryptogrammeCredit>
+         <!--Optional:-->
+         <montant>250</montant>
+      </tran:effectuerTransaction>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://transaction.bank.al24.afcepf.fr/ITransactionBancaire/effectuerTransaction"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

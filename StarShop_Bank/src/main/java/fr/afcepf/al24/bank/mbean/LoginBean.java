@@ -123,16 +123,24 @@ public class LoginBean implements Serializable {
 		if (nom != null || motDePasse != null) {
 			log.info("LoginBean.connexion : DAOClient " + daoClient);
 			log.info("****************************************");
-			client = daoClient.rechercherClientparNomMotDePasse(nom, motDePasse);
-			if (client == null) {
-				log.info("LoginBean.connexion : client introuvable");
-				log.info("****************************************");
-				afficheMessage("Cet utilisateur n'existe pas !");
-			} else {
-				pageRetournee = "consulterCompte.xhtml";
-				log.info("LoginBean.connexion : client trouvé : " + pageRetournee);
-				log.info("********************************************************");
+			
+			try {
+				client = daoClient.rechercherClientparNomMotDePasse(nom, motDePasse);
+				if (client == null) {
+					log.info("LoginBean.connexion : client introuvable");
+					log.info("****************************************");
+					afficheMessage("Cet utilisateur n'existe pas !");
+				} else {
+					pageRetournee = "consulterCompte.xhtml";
+					log.info("LoginBean.connexion : client trouvé : " + pageRetournee);
+					log.info("********************************************************");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				pageRetournee = "";
 			}
+			
 		}
 		return pageRetournee;
 	}
@@ -140,7 +148,7 @@ public class LoginBean implements Serializable {
 	public void buttonActionListenerConnexion(ActionEvent actionEvent) {
 
 		afficheMessage("Connexion en cours");
-		RequestContext requestContext = RequestContext.getCurrentInstance();
+		//RequestContext requestContext = RequestContext.getCurrentInstance();
 
 		log.info("LoginBean.buttonAction : " + actionEvent.getSource());
 	}
@@ -148,7 +156,7 @@ public class LoginBean implements Serializable {
 	public void buttonActionDeconnexion(ActionEvent actionEvent) {
 
 		afficheMessage("Déconnexion en cours");
-		RequestContext requestContext = RequestContext.getCurrentInstance();
+		//RequestContext requestContext = RequestContext.getCurrentInstance();
 
 		log.info("LoginBean.buttonActionDeconnexion : " + actionEvent.getSource());
 		deconnexion();
