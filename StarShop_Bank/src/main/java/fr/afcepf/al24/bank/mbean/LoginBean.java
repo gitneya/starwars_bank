@@ -35,7 +35,7 @@ public class LoginBean implements Serializable {
 	private String nom;
 	private String motDePasse;
 
-	//Ne pas oublier la faces-config sinon injection ne marche pas !!!!!!!!
+	//Ne pas oublier la faces-config sinon injection ne marche pas (ELResolver) !!!!!!!!
 	@ManagedProperty(value="#{daoClient}")
 	private IDaoClient daoClient;
 
@@ -107,10 +107,16 @@ public class LoginBean implements Serializable {
 	public String deconnexion() {
 		log.info("LoginBean.Déconnexion : " + nom);
 		client = null;
+		//Close session
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "index.xhtml?faces-redirect=true";
+		//return "index.xhtml";//?faces-redirect=true";
+		return "main.xhtml";//?faces-redirect=true";
 	}
 
+	/**
+	 * 
+	 * @return String : nom de la page retournée.
+	 */
 	public String connexion() {
 		String pageRetournee = "login.xhtml";
 		log.info("LoginBean.connexion : " + nom + " " + motDePasse);
