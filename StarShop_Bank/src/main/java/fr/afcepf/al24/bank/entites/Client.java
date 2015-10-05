@@ -33,22 +33,22 @@ public class Client implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "CLIENT_ID", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name="numeroidentite", unique = true, nullable = false)
+	@Column(name="CLIENT_NUMERO_IDENTITE", unique = true, nullable = false)
 	private Long numeroIdentite ;
 	
-	@Column(name="nom",nullable = false, length = 50)
+	@Column(name="CLIENT_NOM",nullable = false, length = 50)
 	private String nom;
 	
-	@Column(name="prenom",nullable = false, length = 50)
+	@Column(name="CLIENT_PRENOM",nullable = false, length = 50)
 	private String prenom;
 	
-	@Column(name="motdepasse",nullable = false, length = 50)
+	@Column(name="CLIENT_MOTDEPASSE",nullable = false, length = 50)
 	private String motDePasse;
 	
-	@Column(name="datenaissance",nullable=false)
+	@Column(name="CLIENT_DATENAISSANCE",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	

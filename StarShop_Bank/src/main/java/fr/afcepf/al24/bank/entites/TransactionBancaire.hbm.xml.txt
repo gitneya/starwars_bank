@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 5 oct. 2015 17:03:21 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 5 oct. 2015 21:12:04 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="fr.afcepf.al24.bank.entites.TransactionBancaire" table="TRANSACTIONBANCAIRE">
+    <class name="fr.afcepf.al24.bank.entites.TransactionBancaire" table="transactionBancaire">
         <id name="id" type="java.lang.Integer">
-            <column name="ID" />
+            <column name="TRANSACTION_ID" />
             <generator class="assigned" />
         </id>
         <property name="montant" type="java.lang.Double">
-            <column name="MONTANT" />
+            <column name="TRANSACTION_MONTANT" />
         </property>
         <property name="dateTransaction" type="java.util.Date">
-            <column name="DATETRANSACTION" />
+            <column name="TRANSACTION_DATE" />
         </property>
         <many-to-one name="compteAdebiter" class="fr.afcepf.al24.bank.entites.Compte" fetch="join">
-            <column name="COMPTEADEBITER" />
+            <column name="COMPTE_ID_DEBIT" />
         </many-to-one>
         <many-to-one name="compteAcrediter" class="fr.afcepf.al24.bank.entites.Compte" fetch="join">
-            <column name="COMPTEACREDITER" />
+            <column name="COMPTE_ID_CREDIT" />
         </many-to-one>
     </class>
 </hibernate-mapping>
