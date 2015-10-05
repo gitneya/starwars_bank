@@ -43,11 +43,11 @@ public class TransactionBancaire implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTransaction;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="COMPTE_ID_DEBIT",nullable=false)
 	private Compte compteAdebiter;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="COMPTE_ID_CREDIT",nullable=false)
 	private Compte compteAcrediter;
 	

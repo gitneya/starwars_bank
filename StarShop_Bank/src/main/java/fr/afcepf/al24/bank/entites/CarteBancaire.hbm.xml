@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 oct. 2015 17:03:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.al24.bank.entites.CarteBancaire" table="CARTEBANCAIRE">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="numero" type="java.lang.Long">
+            <column name="NUMERO" />
+        </property>
+        <property name="cryptogramme" type="java.lang.Integer">
+            <column name="CRYPTOGRAMME" />
+        </property>
+        <property name="dateEmmission" type="java.util.Date">
+            <column name="DATEEMMISSION" />
+        </property>
+        <property name="dateFinValidite" type="java.util.Date">
+            <column name="DATEFINVALIDITE" />
+        </property>
+        <many-to-one name="compte" class="fr.afcepf.al24.bank.entites.Compte" fetch="join">
+            <column name="COMPTE" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
