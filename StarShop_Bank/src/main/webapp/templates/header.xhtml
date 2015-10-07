@@ -5,30 +5,44 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <f:view>
 	<ui:composition>
-
 		<h:form>
 			<div id="header" class=".ui-widget-content">
-				<h:panelGrid columns="4" cellpadding="5" id="headerGrid"
-					layout="grid">
+				<p:panelGrid columns="5" cellpadding="5" id="headerGrid"
+					layout="grid" styleClass="centered" style="max-witdth=10%;max-height=10%;">
 					<h1>Bienvenue dans votre Banque en Ligne</h1>
-					<p:outputLabel value="Bonjour #{loginBean.nom}"
+					<p:outputLabel
+						value="Bonjour #{loginBean.client.prenom} #{loginBean.nom}"
 						rendered="#{loginBean.estConnecte}" />
 					<p:commandButton id="buttonDeconnexionHeader" value="Déconnexion"
 						icon="ui-icon-check"
 						actionListener="#{loginBean.buttonActionDeconnexion}"
-						action="/index" ajax="true" rendered="#{loginBean.estConnecte}" />
+						action="#{loginBean.deconnexion()}" ajax="true"
+						rendered="#{loginBean.estConnecte}" />
 					<p:commandButton id="buttonConnexionHeader" value="Connexion"
 						icon="ui-icon-check"
 						actionListener="#{loginBean.buttonActionListenerConnexion}"
-						action="/login" ajax="true" rendered="#{!loginBean.estConnecte}" />
-				</h:panelGrid>
+						action="#{loginBean.connexion()}" ajax="true"
+						rendered="#{!loginBean.estConnecte}" />
+					<p:outputLabel for="basic" value="Choisir un theme :" />
+					<p:themeSwitcher id="basic" style="width:165px"
+						value="#{themeSwitcherView.theme}">
+						<!-- <f:selectItem itemLabel="Choisir un theme" itemValue="" />  -->
+						<f:selectItems value="#{themeSwitcherView.themes}" var="theme"
+							itemLabel="#{theme.displayName}" itemValue="#{theme}" />
+						<p:column>
+							<h:outputText styleClass="ui-theme ui-theme-"
+								style="display-block" />
+						</p:column>
+					</p:themeSwitcher>
+				</p:panelGrid>
 				<p:breadCrumb>
 					<p:menuitem value="Accueil" url="index.xhtml" />
-					<p:menuitem value="Consulter mon compte" action="/login" />
-					<p:menuitem value="Créer un compte" action="/creerCompte" />
+					<p:menuitem value="Consulter mon compte"
+						action="#{loginBean.consulterCompte()}" />
+					<p:menuitem value="Créer un compte" action="creerCompte" />
 				</p:breadCrumb>
 			</div>
 

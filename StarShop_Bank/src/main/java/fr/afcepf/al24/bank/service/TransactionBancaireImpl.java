@@ -45,14 +45,16 @@ public class TransactionBancaireImpl implements ITransactionBancaire {
 			Date dateFinValiditeDebit, Integer cryptogrammeDebit,
 			Long numeroCarteCredit, Date dateFinValiditeCredit,
 			Integer cryptogrammeCredit, Double montant) {
-		WSRetourTransaction retour = new WSRetourTransaction(false,0,new Date());
+		WSRetourTransaction retour = new WSRetourTransaction(false, 0, new Date());
 		//Vérifier le solde sur le compte à débiter
 		CarteBancaire carteDebit = daoCarte.rechercherCarte(numeroCarteDebit, cryptogrammeDebit, dateFinValiditeDebit);
 		CarteBancaire carteCredit = daoCarte.rechercherCarte(numeroCarteCredit, cryptogrammeCredit, dateFinValiditeCredit);
+		
 		if (carteDebit != null && carteCredit != null) {
 			Compte compteDebit = carteDebit.getCompte();
 			Compte compteCredit = carteCredit.getCompte();
-			
+			log.info("Nom du compte a débiter : " + carteDebit.getCompte().getClient().getNom());
+			log.info("Nom du compte a créditer : " + carteCredit.getCompte().getClient().getNom());
 			//Créer la transaction
 			if (compteDebit.getSolde() - montant >= 0) { 
 				TransactionBancaire t = new TransactionBancaire();

@@ -1,0 +1,1 @@
+Pour utiliser l'éditeur de requete HQL, il faut renommer les fichiers *.hbm.xml.txt en *.hbm.xml

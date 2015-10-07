@@ -145,6 +145,21 @@ public class LoginBean implements Serializable {
 		return pageRetournee;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public String consulterCompte() {
+		String pageRetournee = "";
+		
+		if (client != null) {
+			pageRetournee = "consulterCompte";
+		} else {
+			pageRetournee = "login";
+		}
+		return pageRetournee;
+	}
+	
 	public void buttonActionListenerConnexion(ActionEvent actionEvent) {
 
 		afficheMessage("Connexion en cours");
@@ -161,6 +176,5 @@ public class LoginBean implements Serializable {
 		log.info("LoginBean.buttonActionDeconnexion : " + actionEvent.getSource());
 		deconnexion();
 	}
-
 }
 

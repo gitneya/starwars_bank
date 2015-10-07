@@ -10,19 +10,31 @@
 	<f:view>
 		<ui:composition template="/templates/BasicTemplate.xhtml">
 			<ui:define name="content">
-				<p:dataTable var="transactionBancaire" value="#{transactionBean.listetransaction}">
-					<p:column headerText="Transaction">
-						<h:outputText value="#{transactionBancaire.id}" />
-					</p:column>
-
-					<p:column headerText="Date">
-						<h:outputText value="#{transactionBancaire.dateTransaction}" />
-					</p:column>
-
-					<p:column headerText="Montant">
-						<h:outputText value="#{transactionBancaire.montant}" />
-					</p:column>
-				</p:dataTable>
+				<h:form>
+					<p:panelGrid columns="2" cellpadding="5" id="idCreationCompteGrid">
+						<f:facet name="header">Création d'un compte</f:facet>
+						<p:outputLabel>Nom : </p:outputLabel>
+						<p:inputText id="iDnomClient" value="#{creationCompteBean.nom}"
+							label="Nom :" required="true"></p:inputText>
+						<p:outputLabel>Prénom : </p:outputLabel>
+						<p:inputText id="iDprenomClient"
+							value="#{creationCompteBean.prenom}" label="Prénom :"
+							required="true"></p:inputText>
+						<p:outputLabel>Date de naissance : </p:outputLabel>
+						<p:calendar id="mask" value="#{creationCompteBean.dateNaissance}" pattern="dd-MM-yyyy" mask="true" />
+						<p:outputLabel>Numéro d'identité : </p:outputLabel>
+						<p:inputText id="iDnumeroClient"
+							value="#{creationCompteBean.numero}" label="Numéro d'identité :"
+							required="true"></p:inputText>
+						<p:outputLabel>Mot de passe : </p:outputLabel>
+						<p:password id="iDmotdepasseClient"
+							value="#{creationCompteBean.motdepasse}" feedback="true" />
+							<p:growl id="growl" life="2000" />
+					<p:commandButton id="buttonCreationCompte" value="Créer"
+						icon="ui-icon-check"
+						action="#{creationCompteBean.creerCompte}" update="idCreationCompteGrid" ajax="true" />
+					</p:panelGrid>
+				</h:form>
 			</ui:define>
 		</ui:composition>
 	</f:view>

@@ -40,6 +40,7 @@ public class DaoClientImpl implements IDaoClient {
 		Client client = new Client(numeroIdentification, nom, prenom, dateNaissance, motDePasse);
 		if (client != null) {
 			entityManager.persist(client);
+			entityManager.flush();
 		}
 		return null;
 	}

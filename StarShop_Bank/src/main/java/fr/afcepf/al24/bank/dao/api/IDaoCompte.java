@@ -16,4 +16,5 @@ public interface IDaoCompte {
 	public boolean supprimerCompte(Client client);
 	public Compte rechercherCompteParCarte(CarteBancaire carte);
 	public Compte mettreAjourCompte(Compte c);
+	public Double retournerSolde(Client client);
 }

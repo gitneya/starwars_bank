@@ -28,10 +28,10 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 				create: creates the schema, destroying previous	data.
 				create-drop: drop the schema at the end of the session.
 			-->
-				<!-- 
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				 -->
+				 <!-- 
 				 <prop key="hibernate.hbm2ddl.auto">create</prop>
+				  -->
 				<!-- 
 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 				 -->
