@@ -14,7 +14,7 @@
 					<p:panelGrid columns="4" cellpadding="5" id="idPanelSolde" layout="grid">
 						<h:outputLabel style="font-weight:bold;font-size: 3.5em;">Solde : </h:outputLabel>
 						<h:outputText value="#{transactionBean.solde}"
-							style="font-weight:bold;font-size: 3.5em;text-align: center;" />
+							style="font-weight:bold;font-size: 3.5em;text-align: center;" ><f:convertNumber minFractionDigits="1"/></h:outputText>
 						<p:commandButton value="Mise à jour" ajax="false" icon="fa-refresh" action="#{loginBean.consulterCompte()}" />
 						<p:commandButton value="Exporter en PDF" ajax="false" icon="fa-file-pdf-o">
 							<p:dataExporter type="pdf" target="idTableTransaction"

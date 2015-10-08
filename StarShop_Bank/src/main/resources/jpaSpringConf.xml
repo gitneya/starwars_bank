@@ -29,10 +29,10 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 				create-drop: drop the schema at the end of the session.
 			-->
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				 <!-- 
+				<!-- 
 				 <prop key="hibernate.hbm2ddl.auto">create</prop>
 				  -->
-				<!-- 
+				  <!-- 
 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 				 -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
